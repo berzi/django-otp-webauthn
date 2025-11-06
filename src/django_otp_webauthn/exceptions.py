@@ -1,9 +1,11 @@
 from django.utils.translation import gettext_lazy as _
-from rest_framework.exceptions import APIException
 
 
-class OTPWebAuthnApiError(APIException):
-    pass
+class OTPWebAuthnApiError(Exception):
+    """Base exception for OTP WebAuthn API errors."""
+    status_code = 500
+    default_detail = _("An error occurred.")
+    default_code = "error"
 
 
 class InvalidState(OTPWebAuthnApiError):
